@@ -11,7 +11,7 @@ async function getRoles(req,res){
     const allRoles = await userRoles.find();
 
 
-    return res.send({"Data":allRoles}) 
+    return res.status(200).send({"Data":allRoles}) 
 }
 
 
@@ -29,7 +29,7 @@ async function createRoles(req,res){
 
 
 
-   if (!roleName_Checker.test(roleName))  return res.send({"error":"role name must contain characters and no extra spaces"})
+   if (!roleName_Checker.test(roleName))  return res.status(500).send({"error":"role name must contain characters and no extra spaces"})
     // (roleStatus_Checker.test(roleStatus)) ? "" : res.send({"error":"role name must contain status active and non active"})
 
 
@@ -71,9 +71,9 @@ async function deleteRole(req,res){
 
     if(existing){
         const delRole = await userRoles.deleteOne({roleName:roleDel_Name});
-        return res.send({"message":"role deleted succesfully!!"})
+        return res.status(200).send({"message":"role deleted succesfully!!"})
     }else{
-        return res.send({"error":"role not available"})
+        return res.status(500).send({"error":"role not available"})
     }
 
 
@@ -119,7 +119,7 @@ async function updateRole(req,res){
 
 
       
-        return res.send({"message":"updated Success fully"})
+        return res.status(200).send({"message":"updated Success fully"})
 
 
 
@@ -129,7 +129,7 @@ async function updateRole(req,res){
 
     }else{
 
-        return res.send({"error":"role not found"})
+        return res.status(500).send({"error":"role not found"})
     }
 
 

@@ -24,7 +24,13 @@ const Role = () => {
       body:JSON.stringify(RoleData)
     })
 
-    if(Role_Response.ok) alert("Data added success !!")
+    const Api_response = await Role_Response.json();
+
+    if(Api_response.message) {
+      alert("Data added success !!")
+    }else{
+      alert(Api_response.error)
+    }
 
   }
 
